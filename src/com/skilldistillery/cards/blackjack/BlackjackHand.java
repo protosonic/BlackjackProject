@@ -13,14 +13,14 @@ public class BlackjackHand extends Hand {
 		int aceCount = 0;
 		// Decide if Ace is 1 or 11 somewhere
 		for (Card card : cardsInHand) {
-			if (card.getVlaue() == 11) { // if card value = 11 = ace
+			if (card.getValue() == 11) { // if card value = 11 = ace
 				aceCount++;
 			} else {
-				total += card.getVlaue();
+				total += card.getValue();
 			}
 		}
 		while (total > 21 && aceCount > 0) {
-			total -= 10;
+			total -= 11;
 			aceCount--;
 		}
 		return total;

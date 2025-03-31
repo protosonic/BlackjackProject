@@ -30,6 +30,6 @@ public class Player {
 	}
 	@Override
 	public String toString() {
-		return "You have: " + hand + "with a value of: " + hand.getHandValue();
+		return hand + "\nHand value: " + hand.getHandValue();
 	}
 }

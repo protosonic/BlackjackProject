@@ -30,7 +30,7 @@ public class BlackjackApplication {
 
 		printWelcome();
 		
-		while (keepPlaying) {
+		while (keepPlaying()) {
 			boolean keepPlaying = true;
 			dealFirstRound();
 			
@@ -45,7 +45,40 @@ public class BlackjackApplication {
 				keepPlaying = keepPlaying();
 				continue;
 			}
-			
+			// Players turn
+			while (playerTurn) {
+				int choice = userMove();
+				
+				if (choice == 1) { // Player hits
+					player.hit(dealer.dealCard());
+					System.out.println(player + "\n");
+					
+					if (player.hand.isBust()) {
+						System.out.println("You busted! Dealer wins.\n");
+						dealerWins++;
+						break;
+					}
+				} else { // player stands
+					playerTurn = false;
+				}
+			}
+			// Dealers turn & determine winner
+			if (!player.hand.isBust()) {
+				dealerMove();
+				dealer.displayHand();
+				
+				int winner = determineWinner();
+				if (winner == 1) {
+					playerWins++;
+					player.clearHand();
+					dealer.clearHand();
+				}
+				if (winner == 2) {
+					dealerWins++;
+					player.clearHand();
+					dealer.clearHand();
+				}
+			}
 		}
 	}
 
@@ -67,14 +100,14 @@ public class BlackjackApplication {
 			System.out.println("BLACKJACK!");
 			System.out.println(dealer + "\n");
 			System.out.println(player + "\n");
-			System.out.println("You got a Blackjack and the dealer did not \n" + "You win!");
+			System.out.println("You got a Blackjack and the dealer did not \n" + "You win!\n");
 			return 1;
 		}
 		if (dealer.hand.isBlackjack() && player.hand.isBlackjack()) {
 			System.out.println("BLACKJACK!");
 			System.out.println(dealer + "\n");
 			System.out.println(player + "\n");
-			System.out.println("The dealer also got a Blackjack \n" + "The round will push");
+			System.out.println("The dealer also got a Blackjack \n" + "The round will push\n");
 			return 2;
 		}
 		return 0;
@@ -84,16 +117,16 @@ public class BlackjackApplication {
 	// for tie
 	public int determineWinner() {
 		if (dealer.hand.isBust()) {
-			System.out.println("Dealer busts! You win!");
+			System.out.println("Dealer busts! You win!\n");
 			return 1;
 		} else if (dealer.hand.getHandValue() > player.hand.getHandValue()) {
-			System.out.println("Dealer wins.");
+			System.out.println("Dealer wins.\n");
 			return 2;
 		} else if (dealer.hand.getHandValue() < player.hand.getHandValue()) {
-			System.out.println("You win!");
+			System.out.println("You win!\n");
 			return 1;
 		} else {
-			System.out.println("Its a push.");
+			System.out.println("Its a push.\n");
 		}
 		return 0;
 	}
@@ -122,7 +155,7 @@ public class BlackjackApplication {
 	// Method for dealer move
 	public void dealerMove() {
 		while (dealer.hand.getHandValue() < 17) {
-			System.out.println("Dealer hits...");
+			System.out.println("Dealer hits...\n");
 			dealer.hit(dealer.dealCard());
 		}
 	}
@@ -158,7 +191,7 @@ public class BlackjackApplication {
 							""";
 		System.out.println("******************************");
 		System.out.println(asciiArt);
-		System.out.println("Welcome, press any key to comtinue...");
+		System.out.println("Welcome, press enter to continue...\n");
 		System.out.println("******************************");
 		sc.nextLine();
 	}

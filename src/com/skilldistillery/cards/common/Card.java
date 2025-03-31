@@ -14,7 +14,7 @@ public class Card {
 		this.rank = rank;
 	}
 	// GETTERS & SETTERS
-	public int getVlaue() {
+	public int getValue() {
 		return rank.getValue();
 	}
 	
