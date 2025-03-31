@@ -28,4 +28,8 @@ public class Player {
 	public void clearHand() {
 		hand.clear();
 	}
+	@Override
+	public String toString() {
+		return "You have: " + hand + "with a value of: " + hand.getHandValue();
+	}
 }
