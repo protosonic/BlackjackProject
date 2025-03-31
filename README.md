@@ -12,14 +12,14 @@ _ Multiple Rounds: The game allows for multiple rounds of play, where the scores
 - Interactive Interface: The game uses the console to interact with the player, allowing them to make decisions (hit or stand) during their turn.
 
 ## Game Flow
-1). The game starts with a welcome message.
-2). The player is dealt two cards, and the dealer is dealt two cards (with one card hidden).
-3). If either the player of the dealer has a Blackjack (21 within the first two cards), the round is 
+1. The game starts with a welcome message.
+2. The player is dealt two cards, and the dealer is dealt two cards (with one card hidden).
+3. If either the player of the dealer has a Blackjack (21 within the first two cards), the round is 
 	immediately decided.
-4). The player is prompted to either "hit" (draw a card) or "stand" (end their turn).
-5). After the player finishes their turn, the dealer's turn begins. This dealer draws cards until they reach a hand value of 17 or higher.
-6). The round ends, and the winner is determined based on the hand values, or if there was a bust.
-7). The player is asked if they want to continue playing another round.
+4. The player is prompted to either "hit" (draw a card) or "stand" (end their turn).
+5. After the player finishes their turn, the dealer's turn begins. This dealer draws cards until they reach a hand value of 17 or higher.
+6. The round ends, and the winner is determined based on the hand values, or if there was a bust.
+7. The player is asked if they want to continue playing another round.
 
 ## Instructions
 - Clone this repo
