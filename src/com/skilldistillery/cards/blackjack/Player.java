@@ -24,10 +24,11 @@ public class Player {
 	public void displayHand() {
 		hand.displayHand();
 	}
-	
+
 	public void clearHand() {
 		hand.clear();
 	}
+
 	@Override
 	public String toString() {
 		return hand + "\nHand value: " + hand.getHandValue();

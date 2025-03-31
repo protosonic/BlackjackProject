@@ -23,17 +23,26 @@ public class BlackjackApplication {
 	}
 
 	public void launch() {
-		boolean playerTurn = true;
-		
+
 		int playerWins = 0;
 		int dealerWins = 0;
 
 		printWelcome();
-		
-		while (keepPlaying()) {
+
+		do {
+			// Print score at top
+			System.out.println("\t\t[SCORE]\n" + "\tPlayer: " + playerWins + "\n\tDealer: " + dealerWins + "\n");
+
+			// Clear hands before round
+			player.clearHand();
+			dealer.clearHand();
+
+			// Sets playerTurn back to true
+			boolean playerTurn = true;
+
 			boolean keepPlaying = true;
 			dealFirstRound();
-			
+
 			// Handle Blackjacks
 			int blackjackResult = handleBlackjack();
 			if (blackjackResult == 1) {
@@ -47,12 +56,13 @@ public class BlackjackApplication {
 			}
 			// Players turn
 			while (playerTurn) {
+
 				int choice = userMove();
-				
+
 				if (choice == 1) { // Player hits
 					player.hit(dealer.dealCard());
 					System.out.println(player + "\n");
-					
+
 					if (player.hand.isBust()) {
 						System.out.println("You busted! Dealer wins.\n");
 						dealerWins++;
@@ -66,20 +76,18 @@ public class BlackjackApplication {
 			if (!player.hand.isBust()) {
 				dealerMove();
 				dealer.displayHand();
-				
+
 				int winner = determineWinner();
 				if (winner == 1) {
 					playerWins++;
-					player.clearHand();
-					dealer.clearHand();
+					continue;
 				}
 				if (winner == 2) {
 					dealerWins++;
-					player.clearHand();
-					dealer.clearHand();
+					continue;
 				}
 			}
-		}
+		} while (keepPlaying());
 	}
 
 	// Method for dealing and displaying starting hands

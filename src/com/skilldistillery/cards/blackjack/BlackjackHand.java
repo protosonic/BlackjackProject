@@ -11,7 +11,7 @@ public class BlackjackHand extends Hand {
 	public int getHandValue() {
 		int total = 0;
 		int aceCount = 0;
-		// Decide if Ace is 1 or 11 somewhere
+		// Decide if Ace is 1 or 11
 		for (Card card : cardsInHand) {
 			if (card.getValue() == 11) { // if card value = 11 = ace
 				aceCount++;
@@ -19,11 +19,11 @@ public class BlackjackHand extends Hand {
 				total += card.getValue();
 			}
 		}
-		while (total > 21 && aceCount > 0) {
-			total -= 11;
-			aceCount--;
-		}
-		return total;
+		if (total > 21 && aceCount > 0) {
+			total -= 10;
+			return total;
+		} else
+			return total;
 	}
 
 	public void displayHand() {
@@ -32,7 +32,6 @@ public class BlackjackHand extends Hand {
 		}
 	}
 
-	// Boolean for is blackjack?
 	public boolean isBlackjack() {
 		if (getHandValue() == 21) {
 			return true;
@@ -40,7 +39,6 @@ public class BlackjackHand extends Hand {
 		return false;
 	}
 
-	// Boolean for is bust?
 	public boolean isBust() {
 		if (getHandValue() > 21) {
 			return true;
